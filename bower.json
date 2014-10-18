@@ -1,0 +1,28 @@
+{
+  "name": "yapf",
+  "version": "0.1.0",
+  "homepage": "https://github.com/daspete/yapf",
+  "authors": [
+    "Das PeTe <daspetemail@gmail.com>"
+  ],
+  "description": "Yet another PageFlip effect",
+  "main": "Gruntfile.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "pageflip"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "1.11.1",
+    "gsap": "~1.14.1"
+  }
+}

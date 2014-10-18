@@ -1,0 +1,24 @@
+{
+  "name": "yapf",
+  "version": "0.1.0",
+  "description": "Yet another PageFlip effect",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daspete/yapf.git"
+  },
+  "author": "Das PeTe <daspetemail@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daspete/yapf/issues"
+  },
+  "homepage": "https://github.com/daspete/yapf",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-requirejs": "~0.4.4",
+    "grunt-contrib-compass": "~1.0.1"
+  }
+}
