@@ -1,1 +1,55 @@
-@import 'compass/reset'
+@import compass/reset
+@import compass/css3
+
+html,body
+	width: 100%
+	height: 100%
+
+.controller
+	position: absolute
+	bottom: 0
+	width: 100%
+	height: 40px
+	background-color: #000
+	padding: 5px
+	@include box-sizing(border-box)
+
+	.btn-next
+		position: absolute
+		left: 5px
+		width: 30px
+		height: 30px
+		background-color: #f00
+
+	.btn-prev
+		position: absolute
+		right: 5px
+		width: 30px
+		height: 30px
+		background-color: #f00
+
+.book
+	width: 100%
+	height: 100%
+
+.page
+	width: 100%
+	height: 100%
+
+	.page1
+		width: 100%
+		height: 100%
+		background-size: cover
+		background-image: image-url('11037-abstract-nature.jpg')
+	.page2
+		width: 100%
+		height: 100%
+		background-size: cover
+		background-image: image-url('abstract-nature.jpg')
+	.page3
+		width: 100%
+		height: 100%
+		background-size: cover
+		background-image: image-url('wallpapers-girls-nature-abstract-101316.jpg')
+
+

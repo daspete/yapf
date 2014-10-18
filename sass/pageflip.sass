@@ -1,2 +1,50 @@
+@import compass/css3
 
+.flipContainer
+  position: relative
+  width: 100%
+  height: 100%
+  @include perspective(3000)
+  @include user-select(none)
 
+.flipContent
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  display: none
+  overflow: hidden
+  
+  &.currentFlip
+    display: block
+
+.flipping
+  background-color: inherit
+  @include backface-visibility(hidden)
+  @include transform-style(preserve3d)
+  @include transform(rotateY(0deg))
+  @include transform(translateZ(0))
+  
+  &.leftFlipContent
+    @include transform-origin(100%, 0)
+  &.rightFlipContent
+    @include transform-origin(0, 0)
+
+.backFlipping
+  display: none
+  background-color: inherit
+  
+  @include backface-visibility(hidden)
+  @include transform-style(flat)
+  @include transform(rotateY(180deg))
+  @include transform(translateZ(0))
+
+  &.leftFlipContent
+    @include transform-origin(100%, 0)
+  &.rightFlipContent
+    @include transform-origin(0, 0)
+
+.splitHalf 
+  position: absolute
+  overflow: hidden
