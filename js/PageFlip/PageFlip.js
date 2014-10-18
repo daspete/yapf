@@ -269,9 +269,9 @@
                 var $underlying=null;
 
                 if(this.flipSide === this.secondHalf){
-                    $underlying=this.getPrevContent($current);
-                }else{
                     $underlying=this.getNextContent($current);
+                }else{
+                    $underlying=this.getPrevContent($current);
                 }
 
                 var back=this.splitContent($underlying, 'back');
