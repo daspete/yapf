@@ -237,10 +237,10 @@
             },
             setShadowGradient: function($container, val, direction, maxOpacity){
                 var linearGradientKey=this.environment.prefix.css+"linear-gradient";
+                var gradientVal='('+direction+', rgba(0,0,0,'+maxOpacity+') 0%, rgba(0,0,0,0) '+(val)+'%)';
 
-                $container.css({
-                    background: linearGradientKey+'('+direction+', rgba(0,0,0,'+maxOpacity+') 0%, rgba(0,0,0,0) '+(val)+'%)'
-                });
+                $container.css({ background: linearGradientKey+gradientVal });
+                $container.css({ background: 'linear-gradient'+gradientVal });
             },
 
             startFlip: function(flipSide){
