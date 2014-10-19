@@ -118,7 +118,10 @@
                     this.DOM.$root.children().eq(0).addClass(this.settings.currentFlipClass);
                 }
 
-                this.setMouseEventListeners();    
+                this.setMouseEventListeners();
+                if(this.settings.keyboard === true){
+                    this.setKeyboardListeners();
+                }
             },
 
             initShadow: function($containers){
@@ -154,16 +157,25 @@
 
                 var percent=rotation / 90;
                 var origPercent=0;
+                var fP=0;
+                var cO=0;
 
                 var backShadowDecrease=0;
                 
                 var startFrontShadowAt=0.4;
                 var fixBackShadowAt=0.88;
+                var fadeOutShadowAt=0.45;
+
 
                 var frontLeftValue=0;
                 var frontRightValue=0;
                 var backLeftValue=0;
                 var backRightValue=0;
+
+                var frontLeftOpacity=0.55;
+                var frontRightOpacity=0.55;
+                var backLeftOpacity=0.55;
+                var backRightOpacity=0.55;
 
                 var firstSideFactor=2;
                 var secondSideFactor=3;
@@ -171,7 +183,6 @@
 
                 var shadowDecreaseFactor=0.2;
                 var secondSideBackFactor=0.3;
-
 
                 if(this.flipSide === this.secondHalf){
                     if(percent < 1){
@@ -199,6 +210,14 @@
                         backLeftValue=100*(percent-secondSideBackFactor);
 
                         frontLeftValue=100*((origPercent)-startFrontShadowAt)*secondSideFactor;
+
+                        if(1-percent > fadeOutShadowAt){
+                            fP=1-percent;
+                            cO=(fP/fadeOutShadowAt)-1;
+
+                            backLeftOpacity-=cO;
+                            backRightOpacity-=cO;
+                        }
                     }    
                 }else{
                     if(percent < 1){
@@ -226,14 +245,22 @@
                         backRightValue=100*(percent-secondSideBackFactor);
 
                         frontRightValue=100*((origPercent)-startFrontShadowAt)*secondSideFactor;
+
+                        if(1-percent > fadeOutShadowAt){
+                            fP=1-percent;
+                            cO=(fP/fadeOutShadowAt)-1;
+
+                            backLeftOpacity-=cO;
+                            backRightOpacity-=cO;
+                        }
                     }
                 }
 
-                this.setShadowGradient($frontLeftShadow, frontLeftValue, 'to left', 0.5);
-                this.setShadowGradient($frontRightShadow, frontRightValue, 'to right', 0.5);
+                this.setShadowGradient($frontLeftShadow, frontLeftValue, 'to left', frontLeftOpacity);
+                this.setShadowGradient($frontRightShadow, frontRightValue, 'to right', frontRightOpacity);
 
-                this.setShadowGradient($backLeftShadow, backLeftValue, 'to left', 0.5);
-                this.setShadowGradient($backRightShadow, backRightValue, 'to right', 0.5);
+                this.setShadowGradient($backLeftShadow, backLeftValue, 'to left', backLeftOpacity);
+                this.setShadowGradient($backRightShadow, backRightValue, 'to right', backRightOpacity);
             },
             setShadowGradient: function($container, val, direction, maxOpacity){
                 var linearGradientKey=this.environment.prefix.css+"linear-gradient";
@@ -254,7 +281,6 @@
                 this.doTheFlip(this.getFlipSides());
             },
             startManualFlip: function(flipSide){
-                console.log("startManualFlip");
                 if(this.flipPosition !== null){
                     return;
                 }
@@ -561,12 +587,23 @@
             setMouseEventListeners: function(){
                 var that=this;
 
-                var events={
-                    mousedown: 'mousedown',
-                    mousemove: 'mousemove',
-                    mouseup: 'mouseup',
-                    click: 'click'
-                };
+                var events={};
+
+                if($.mobile){
+                    events={
+                        mousedown: 'vmousedown',
+                        mousemove: 'vmousemove',
+                        mouseup: 'vmouseup',
+                        click: 'vclick'
+                    };
+                }else{
+                    events={
+                        mousedown: 'mousedown',
+                        mousemove: 'mousemove',
+                        mouseup: 'mouseup',
+                        click: 'click'
+                    };    
+                }
 
                 if(this.settings.mouse === true){
                     this.DOM.$root.on(events.mousedown, function(e){
@@ -726,6 +763,20 @@
                 }else{
                     return Math.min(Math.max(-1, distance), 0);
                 }
+            },
+
+            setKeyboardListeners: function(){
+                var that=this;
+
+                $(document).off('keydown.flip').on('keydown.flip', function(e){
+                    if(!$(e.target).is('input,textarea,select,button')){
+                        if(e.keyCode === that.settings.keys.left){
+                            that.flipPrev();
+                        }else if(e.keyCode === that.settings.keys.right){
+                            that.flipNext();
+                        }
+                    }
+                });
             },
 
             resetUserContext: function(){
