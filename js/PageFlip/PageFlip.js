@@ -158,7 +158,7 @@
                 var backShadowDecrease=0;
                 
                 var startFrontShadowAt=0.4;
-                var fixBackShadowAt=0.85;
+                var fixBackShadowAt=0.88;
 
                 var frontLeftValue=0;
                 var frontRightValue=0;
@@ -167,7 +167,7 @@
 
                 var firstSideFactor=2;
                 var secondSideFactor=3;
-                var backSideFactor=4;
+                var backSideFactor=5;
 
                 var shadowDecreaseFactor=0.2;
                 var secondSideBackFactor=0.3;
@@ -232,8 +232,8 @@
                 this.setShadowGradient($frontLeftShadow, frontLeftValue, 'to left', 0.5);
                 this.setShadowGradient($frontRightShadow, frontRightValue, 'to right', 0.5);
 
-                this.setShadowGradient($backLeftShadow, backLeftValue, 'to left', 0.6);
-                this.setShadowGradient($backRightShadow, backRightValue, 'to right', 0.6);
+                this.setShadowGradient($backLeftShadow, backLeftValue, 'to left', 0.5);
+                this.setShadowGradient($backRightShadow, backRightValue, 'to right', 0.5);
             },
             setShadowGradient: function($container, val, direction, maxOpacity){
                 var linearGradientKey=this.environment.prefix.css+"linear-gradient";
