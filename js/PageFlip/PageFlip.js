@@ -839,9 +839,9 @@
             }
 
         };
-        // END PARTICLES MainModule
+        // END PAGEFLIP MainModule
         
-        // Initialize PARTICLES if there are any settings, else give us an error
+        // Initialize PAGEFLIP
         if(typeof settings === "undefined"){
             settings=defaults;
         }
